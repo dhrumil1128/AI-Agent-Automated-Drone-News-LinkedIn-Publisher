@@ -105,17 +105,22 @@ The automation operates in **4 key stages**:
 
 ### 🔄 Workflow in n8n
 
-<img width="1825" height="766" alt="n8n - workflow" src="https://github.com/user-attachments/assets/409466e7-91e2-4e69-b059-3d4c60680ab8" />
-
+<img width="1917" height="737" alt="image" src="https://github.com/user-attachments/assets/f4b0e234-04eb-4e04-95e5-fa38e1b09d70" />
 
 
 ### 🤖 AI-Generated Content
 
-![Gemini Output](./screenshots/gemini_output.png)
+<img width="1852" height="760" alt="image" src="https://github.com/user-attachments/assets/3e9e97ed-849e-4be7-ab5d-7a1838f4092c" />
+<img width="738" height="250" alt="image" src="https://github.com/user-attachments/assets/3205add9-5ec6-4504-8f22-cec6459a3b2e" />
+
+
 
 ### 💼 LinkedIn Auto-Post
 
-![LinkedIn Post](./screenshots/linkedin_post.png)
+<img width="708" height="772" alt="Linkdin post" src="https://github.com/user-attachments/assets/308e1994-de44-4919-9ce1-9c1e22e76ab6" />
+<img width="741" height="622" alt="Lindin post" src="https://github.com/user-attachments/assets/3d016cda-32eb-41e8-a45f-a74fe0e07703" />
+
+
 
 ---
 
