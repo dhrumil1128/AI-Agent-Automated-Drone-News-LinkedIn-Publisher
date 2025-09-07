@@ -1,0 +1,362 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1344,
+        128
+      ],
+      "id": "c6fdf1cf-2a50-4999-8016-3dc15447e1ab",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://news.google.com/rss/search?q=latest%20drone%20news&hl=en-IN&gl=IN&ceid=IN:en",
+        "options": {
+          "customFields": ""
+        }
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        -976,
+        -96
+      ],
+      "id": "bb96893d-695e-40ad-a4d6-e04b7bc3bf32",
+      "name": "RSS Drone News "
+    },
+    {
+      "parameters": {
+        "url": "https://news.google.com/rss/search?q=UAV%20technology&hl=en-IN&gl=IN&ceid=IN:en",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        -1008,
+        128
+      ],
+      "id": "718ebc31-e005-4966-85cb-6aa488543543",
+      "name": "RSS UAV Technology"
+    },
+    {
+      "parameters": {
+        "url": "https://news.google.com/rss/search?q=DGCA%20drones%20India&hl=en-IN&gl=IN&ceid=IN:en",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        -1008,
+        384
+      ],
+      "id": "fbdc2462-ad27-492c-94a0-bcbc49e2e159",
+      "name": "RSS DGCA Drones India"
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        464,
+        -448
+      ],
+      "id": "3b333cbb-3bc5-4a58-a56c-3154acb75bbd",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-1.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-1.5-flash"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Please act as a professional LinkedIn content writer.\n\nSummarize the following news article in 3–5 engaging paragraphs. Include:\n- Key insights\n- Implications for professionals\n- Takeaways for readers\n\nStart with a hook question or statement.\nUse clear and professional language suitable for LinkedIn.\nOptionally, add emojis or bullets to enhance readability.\n\nExtract 5 relevant hashtags and 5 trending keywords.\n\nReturn strictly in JSON format:\n{\n  \"summary\": \"Your long, professional summary here...\",\n  \"hashtags\": [\"#tag1\", \"#tag2\", \"#tag3\", \"#tag4\", \"#tag5\"],\n  \"keywords\": [\"keyword1\", \"keyword2\", \"keyword3\", \"keyword4\", \"keyword5\"]\n}\n\nArticle Title: {{ $json.title }}\nArticle Content: {{ $json.content }}\n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        1456,
+        -512
+      ],
+      "id": "19d0a18f-fe17-4b52-a4dc-e5bf689fcd06",
+      "name": "Message a model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "WbV7W6omvmG5oc4a",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "16bc7e78-4900-4f69-9a31-1c89169d7196",
+              "name": "=socialMediaPost",
+              "value": "={{\n  \"🚨 How is Delhi managing floods with drones? Here's an in-depth look:\\n\\n\" +\n  $json[\"content\"][\"parts\"][0][\"text\"]\n    .split('\"summary\": \"')[1].split('\",')[0]\n    .replace(/\\\\n/g, '\\n') + \"\\n\\n\" +\n  \"🔹 Hashtags: \" +\n  $json[\"content\"][\"parts\"][0][\"text\"]\n    .split('\"hashtags\": [')[1].split('],')[0]\n    .replace(/\"/g, '')\n    .replace(/,/g, ' ') + \"\\n\\n\" +\n  \"Posted on: \" + new Date().toLocaleString()\n}}\n",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1792,
+        -768
+      ],
+      "id": "2811e399-14d5-4675-9816-5775e18d2d32",
+      "name": "Set"
+    },
+    {
+      "parameters": {
+        "person": "oQQ9DTgtJ-",
+        "text": "={{ $json.socialMediaPost }}",
+        "additionalFields": {
+          "visibility": "PUBLIC"
+        }
+      },
+      "type": "n8n-nodes-base.linkedIn",
+      "typeVersion": 1,
+      "position": [
+        2176,
+        -336
+      ],
+      "id": "33090cb5-e492-41ff-ab78-7ae6e2f95990",
+      "name": "Create a post",
+      "credentials": {
+        "linkedInOAuth2Api": {
+          "id": "Tz0HROsXHntc8fX8",
+          "name": "LinkedIn account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "maxItems": 3
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -752,
+        -96
+      ],
+      "id": "bd9c6e70-c4f8-4cc4-9ed0-ef14a62e65c6",
+      "name": "Limit1"
+    },
+    {
+      "parameters": {
+        "maxItems": 3
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -736,
+        160
+      ],
+      "id": "ae0c6e58-e491-481e-9721-8e6ffccdf5fd",
+      "name": "Limit2"
+    },
+    {
+      "parameters": {
+        "maxItems": 3
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -736,
+        400
+      ],
+      "id": "0ee87c3e-c37f-404e-b108-17bbdb93020a",
+      "name": "Limit3"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        672,
+        -448
+      ],
+      "id": "f529cbca-10f8-4987-9945-ef4393138503",
+      "name": "Loop Over Items"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "RSS Drone News ",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS UAV Technology",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS DGCA Drones India",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Drone News ": {
+      "main": [
+        [
+          {
+            "node": "Limit1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS UAV Technology": {
+      "main": [
+        [
+          {
+            "node": "Limit2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS DGCA Drones India": {
+      "main": [
+        [
+          {
+            "node": "Limit3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Create a post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit2": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Limit3": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a post": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "bf4881b9-0ff1-4656-aabb-aadcf1dfe661",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "13aabfab5f42ffa4a20d90f696a997e11f3586d26fefd9c4a642c9c9f01766d8"
+  },
+  "id": "GreCt81W5PcAwF7I",
+  "tags": []
+}
