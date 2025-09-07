@@ -105,20 +105,23 @@ The automation operates in **4 key stages**:
 
 ### 🔄 Workflow in n8n
 
-<img width="1917" height="737" alt="image" src="https://github.com/user-attachments/assets/f4b0e234-04eb-4e04-95e5-fa38e1b09d70" />
+<img width="1892" height="988" alt="n8n workflow" src="https://github.com/user-attachments/assets/ff191b9c-951f-4280-84e3-7abbac2634cd" />
+
 
 
 ### 🤖 AI-Generated Content
 
-<img width="1852" height="760" alt="image" src="https://github.com/user-attachments/assets/3e9e97ed-849e-4be7-ab5d-7a1838f4092c" />
-<img width="738" height="250" alt="image" src="https://github.com/user-attachments/assets/3205add9-5ec6-4504-8f22-cec6459a3b2e" />
+<img width="1910" height="803" alt="gemini output(JSON)" src="https://github.com/user-attachments/assets/57960c88-3b21-4e09-a11d-b90a5a80deb6" />
+
 
 
 
 ### 💼 LinkedIn Auto-Post
 
-<img width="708" height="772" alt="Linkdin post" src="https://github.com/user-attachments/assets/308e1994-de44-4919-9ce1-9c1e22e76ab6" />
-<img width="741" height="622" alt="Lindin post" src="https://github.com/user-attachments/assets/3d016cda-32eb-41e8-a45f-a74fe0e07703" />
+<img width="1783" height="883" alt="linkdin post - 1" src="https://github.com/user-attachments/assets/d5b84df3-0ab6-49cf-ba08-aa59efbfd63d" />
+![Uploading linkedin Post - 2.png…]()
+
+
 
 
 
