@@ -105,7 +105,8 @@ The automation operates in **4 key stages**:
 
 ### 🔄 Workflow in n8n
 
-![Workflow Screenshot](./screenshots/workflow.png)
+![Workflow Screenshot](<img width="1825" height="766" alt="n8n - workflow" src="https://github.com/user-attachments/assets/6edaa1e3-cf6c-48b7-b522-a8d61a531d5c" />)
+
 
 ### 🤖 AI-Generated Content
 
