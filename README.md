@@ -101,7 +101,7 @@ The automation operates in **4 key stages**:
 
 ---
 
-## 🖼️ Sample Outputs
+##  Outputs
 
 ### 🔄 Workflow in n8n
 
@@ -119,7 +119,8 @@ The automation operates in **4 key stages**:
 ### 💼 LinkedIn Auto-Post
 
 <img width="1783" height="883" alt="linkdin post - 1" src="https://github.com/user-attachments/assets/d5b84df3-0ab6-49cf-ba08-aa59efbfd63d" />
-![Uploading linkedin Post - 2.png…]()
+<img width="1565" height="638" alt="linkedin Post - 2" src="https://github.com/user-attachments/assets/11a0a346-0b6d-4bc5-90ea-0449af702624" />
+
 
 
 
