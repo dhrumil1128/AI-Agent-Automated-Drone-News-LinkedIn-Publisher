@@ -169,6 +169,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-⚡ Now your **Drone News Automation** repo will look just as professional as your RAG chatbot repo.
+
 
 Do you also want me to prepare the **short PDF project report (2–3 pages with screenshots)** for HR submission, based on this README?
