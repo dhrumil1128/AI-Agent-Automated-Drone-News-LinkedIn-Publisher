@@ -1,4 +1,4 @@
-# AI-Agent-Automated-Drone-News-LinkedIn-Publisher
+# Automated-Drone-News-LinkedIn-Publisher
 
 ![n8n](https://img.shields.io/badge/n8n-Automation-orange?style=flat-square\&logo=n8n)
 ![Google Gemini](https://img.shields.io/badge/Google_Gemini-1.5_Flash-blue?style=flat-square\&logo=google)
